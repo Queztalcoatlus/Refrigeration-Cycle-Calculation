@@ -1,0 +1,37 @@
+dT=0.1;
+dP=0.00689476;
+dm=0.01*0.453592/60;
+dI=0.01;
+dV=0.1;
+[T1_e1,vf1_e1,vg1_e1,hf1_e1,hg1_e1,sf1_e1,sg1_e1]=R12_sat(T(1,1)+dT);
+dh_T=hf1_e1-h(1,1);
+dv_T=vf1_e1-v(1,1);
+ds_T=sf1_e1-s(1,1);
+[T1_e2,vf1_e2,vg1_e2,hf1_e2,hg1_e2,sf1_e2,sg1_e2]=R12_sat_P(P(1,1)+dP);
+dh_P=hf1_e2-h(1,1);
+dv_P=vf1_e2-v(1,1);
+ds_P=sf1_e2-s(1,1);
+dh=sqrt(dh_T^2+dh_P^2);
+dv=sqrt(dv_T^2+dv_P^2);
+ds=sqrt(ds_T^2+ds_P^2);
+dcop=zeros(9,2);
+dcop(:,1)=sqrt(2)*dh*cop(:,2).*sqrt(1./(h(:,3)-h(:,2)).^2+1./(h4_r-h(:,3)).^2);
+dcop(:,2)=cop(:,3).*sqrt((sqrt(2)*dh./(h(:,3)-h(:,2))).^2+(dm./arr(:,18)).^2+(dV./arr(:,17)).^2+(dI./arr(:,15)).^2);
+drc=rc.*sqrt((sqrt(2)*dh./(h(:,3)-h(:,2))).^2+(dm./arr(:,18)).^2);
+
+%Superheat
+[T_5e,v_5e,s_5e]=sat_state(P(5,3)+dP);
+[T_6e,v_6e,s_6e]=sat_state(P(6,3)+dP);
+dT_sat5=T_5e-T_5;
+dT_sat6=T_6e-T_6;
+d_superheat=sqrt(dT_sat5^2+dT^2);
+% drc=zeros(9,1);
+% dh=sqrt((dT./(T+273.15)).^2+(dP./P).^2).*h;
+% dv=sqrt((dT./(T+273.15)).^2+(dP./P).^2).*v;
+% ds=sqrt((dT./(T+273.15)).^2+(dP./P).^2).*s;
+% V=arr(:,17);
+% I=arr(:,15);
+% W=V*I/arr(:,18);
+% dW=sqrt((dV/
+% dh_r=
+% dcop(:,1)=sqrt(
